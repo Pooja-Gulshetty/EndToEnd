@@ -1,0 +1,11 @@
+git checkout the code
+
+mvn compile
+
+mvn unit-test
+
+docker build --tag=bhatta:1.2 -f Dockerfile .
+
+mvn component-test
+
+post bhatta:1.2 http://artifactory

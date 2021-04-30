@@ -48,6 +48,16 @@ public class PersonController {
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
 
+  @RequestMapping(path = "endtoend/v2/persons/{personId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<String> getPerson(@PathVariable("personId") final String personName, final String firstName) throws JsonProcessingException {
+    if (persons.containsKey(personName)) {
+      final PersonDto personDto = persons.get(personName);
+      final String json = objectMapper.writeValueAsString(personDto);
+      return new ResponseEntity<>(json, HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
   public ResponseEntity<String> deletePerson(final String personName) {
     return new ResponseEntity<>("Will be implemented later.", HttpStatus.NOT_IMPLEMENTED);
   }
